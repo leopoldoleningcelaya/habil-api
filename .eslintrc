@@ -1,0 +1,223 @@
+{
+  "ignorePatterns": ["dist", "node_modules"],
+  "env": {
+    "es2021": true,
+    "node": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier",
+    "plugin:prettier/recommended",
+    "plugin:import/recommended",
+    "plugin:import/typescript"
+  ],
+  "settings": {
+    "import/resolver": {
+      "typescript": true,
+      "node": true
+    },
+    "import/external-module-folders": ["node_modules"],
+    "import/internal-regex": "^node_modules/@past-ar/"
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": [
+    "@typescript-eslint",
+    "regex",
+    "spellcheck"
+  ],
+  "rules": {
+    "@typescript-eslint/explicit-member-accessibility": 0,
+    "@typescript-eslint/explicit-function-return-type": 0,
+    "@typescript-eslint/no-parameter-properties": 0,
+    "@typescript-eslint/interface-name-prefix": 0,
+    "@typescript-eslint/explicit-module-boundary-types": 0,
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/ban-types": "off",
+    "@typescript-eslint/no-var-requires": "off",
+    "prefer-arrow-callback": "error",
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      {
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_",
+        "caughtErrorsIgnorePattern": "^_"
+      }
+    ],
+    "@typescript-eslint/no-empty-function": [
+      "warn",
+      {
+        "allow": ["constructors"]
+      }
+    ],
+    "import/no-unresolved": "off",
+    //https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/order.md
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          "index",
+          "sibling",
+          "parent",
+          "object",
+          "type"
+        ],
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      }
+    ],
+    "no-restricted-imports": ["error", {
+      "patterns": [{
+        "group": ["@/../../*"],
+        "message": "Imports from outside the project are not allowed."
+      }]
+    }],
+    "regex/invalid": [
+      "error", [
+        {
+          "id": "no-setDoc-on-migrations",
+          "regex": "setDoc\\(.*\\)",
+          "message": "setDoc is not allowed in migrations since it can cause data loss",
+          "files": {
+            "inspect": "./*/*.ts",
+            "ignore": "./*/*.repository.ts"
+          }
+        },
+        {
+          "id": "no-deleteDoc-on-migrations",
+          "regex": "deleteDoc\\(.*\\)",
+          "message": "deleteDoc is not allowed in migrations since it can cause data loss",
+          "files": {
+            "inspect": "./*/*.ts",
+            "ignore": "./*/*.repository.ts"
+          }
+        },
+        {
+          "id": "no-autowire-different-class",
+          "regex": "@Autowired\\('?(\\w*)'?\\)\\n *\\w* \\w*: (?!\\1)",
+          "message": "The autowired class is not the same as the variable type",
+          "files": {
+            "inspect": "./*/*.ts"
+          }
+        }
+      ]
+    ],
+    "spellcheck/spell-checker": [
+      "warn",
+      {
+        "lang": "en_US",
+        "skipWords": [
+          "offerer",
+          "offerers",
+          "algolia",
+          "algoliasearch",
+          "apis",
+          "apn",
+          "autowired",
+          "axios",
+          "basepath",
+          "clicktracking",
+          "cors",
+          "coverages",
+          "decrement",
+          "decrementing",
+          "dependant",
+          "dependants",
+          "dispositioned",
+          "docu",
+          "dto",
+          "dtstart",
+          "durables",
+          "enum",
+          "facebook",
+          "fallthrough",
+          "filedata",
+          "filestorage",
+          "financials",
+          "firebase",
+          "firestore",
+          "flyer",
+          "formated",
+          "fs",
+          "gb",
+          "geofence",
+          "geohash",
+          "geoloc",
+          "geopoint",
+          "goto",
+          "honestwork",
+          "hourlywork",
+          "hpp",
+          "href",
+          "incrementing",
+          "instagram",
+          "inviter",
+          "io",
+          "jobposts",
+          "jpeg",
+          "jpg",
+          "kb",
+          "keycloak",
+          "linkedin",
+          "macos",
+          "mb",
+          "middlewares",
+          "morgan",
+          "msg",
+          "multer",
+          "networkidle0",
+          "noreply",
+          "oob",
+          "openapi",
+          "openid",
+          "passphrase",
+          "pdf",
+          "printf",
+          "qa",
+          "qs",
+          "rchilli",
+          "readdir",
+          "repost",
+          "req",
+          "rrulestr",
+          "searchable",
+          "sendgrid",
+          "setuid",
+          "sms",
+          "str",
+          "subpath",
+          "tiktok",
+          "transactional",
+          "tsconfig",
+          "tsx",
+          "twilio",
+          "uid",
+          "uids",
+          "uri",
+          "urlencoded",
+          "utf8",
+          "validators",
+          "webhook",
+          "webhooks",
+          "winston",
+          "yaml"
+        ],
+        "skipIfMatch": [
+          "http[s]://[^s]*",
+          "^[-\\w]+\/[-\\w\\.]+$"
+        ],
+        "minLength": 4
+      }
+    ]
+  }
+}
