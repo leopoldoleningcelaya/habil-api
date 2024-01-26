@@ -1,7 +1,8 @@
 import { CredentialsDto, RefreshTokenDto } from '@dtos/auth.dto';
 import { getAuthAdapter } from '@factories/authAdapter.factory';
-import { AuthAdapter } from '@interfaces/user.interface';
-import { LoginGrant, UserResponse } from '@responses/user.response';
+import { AuthAdapter } from '@interfaces/auth.interface';
+import { LoginGrant } from '@responses/auth.response';
+import { UserResponse } from '@responses/user.response';
 
 class AuthService {
   private static instance: AuthService;

@@ -1,7 +1,7 @@
 import { ParsedQs } from 'qs';
 import { UserRoles } from '@enums';
 import { GetAllUsersParams } from '@params/user.param';
-import { mapQueryToPaginationParams } from './';
+import { mapQueryToPaginationParams } from '.';
 
 export function mapQueryToGetAllUsersParams(query: ParsedQs): GetAllUsersParams {
   const response = new GetAllUsersParams();

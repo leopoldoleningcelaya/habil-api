@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { UserResponse } from '@responses/user.response';
+import { UserResponse } from '@responses/auth.response';
 import AuthService from '@services/auth.service';
 
 const authService: AuthService = AuthService.getInstance();

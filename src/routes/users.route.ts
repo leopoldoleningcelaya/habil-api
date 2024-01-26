@@ -1,5 +1,5 @@
 import UsersController from '@controllers/user.controller';
-import { UpdateUserDto, UserDto, UserEnabledDto } from '@dtos/user.dto';
+import { ChangeUserPasswordDto, UserDto, UserEnabledDto } from '@dtos/user.dto';
 import { UserRoles } from '@enums';
 import { roleMiddleware, validationMiddleware } from '@middlewares';
 import authMiddleware from '@middlewares/auth.middleware';
@@ -35,14 +35,14 @@ class UsersRoute extends Route {
       this.usersController.addUser
     );
     this.router.patch(
-      '/:uid/enabled',
+      '/:id/enabled',
       [roleMiddleware([UserRoles.ADMIN]), validationMiddleware(UserEnabledDto, 'body')],
       this.usersController.setUserEnabled
     );
     this.router.patch(
-      '/',
-      [validationMiddleware(UpdateUserDto, 'body')],
-      this.usersController.updateUser
+      '/password',
+      [validationMiddleware(ChangeUserPasswordDto, 'body')],
+      this.usersController.changeUserPassword
     );
   }
 }

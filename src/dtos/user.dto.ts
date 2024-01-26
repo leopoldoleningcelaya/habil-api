@@ -1,14 +1,8 @@
-import { IsString, IsBoolean, IsArray, IsOptional, IsEnum } from 'class-validator';
-import { CredentialsDto } from '@dtos/auth.dto';
-import { UserRoles } from '@enums';
+import { IsArray, IsBoolean, IsEnum, IsString } from 'class-validator';
+import { UserRoles } from '@enums/index';
+import { CredentialsDto } from './auth.dto';
 
 export class UserDto extends CredentialsDto {
-  @IsString()
-  public firstName: string;
-
-  @IsString()
-  public lastName: string;
-
   @IsArray()
   @IsEnum(UserRoles, { each: true })
   public roles: UserRoles[];
@@ -22,16 +16,7 @@ export class UserEnabledDto {
   public enabled: boolean;
 }
 
-export class UpdateUserDto {
+export class ChangeUserPasswordDto {
   @IsString()
-  @IsOptional()
-  public firstName?: string;
-
-  @IsString()
-  @IsOptional()
-  public lastName?: string;
-
-  @IsString()
-  @IsOptional()
-  public password?: string;
+  public password: string;
 }

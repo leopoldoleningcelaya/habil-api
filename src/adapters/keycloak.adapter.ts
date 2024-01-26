@@ -12,9 +12,9 @@ import {
   UserNotFound,
 } from '@errors/auth.error';
 import { Page } from '@interfaces';
-import { AuthAdapter, AuthUser } from '@interfaces/user.interface';
+import { AuthAdapter, AuthUser } from '@interfaces/auth.interface';
 import { GetAllUsersParams } from '@params/user.param';
-import { LoginGrant } from '@responses/user.response';
+import { LoginGrant } from '@responses/auth.response';
 import { paginateArray } from '@utils/paginateArray';
 
 interface UserRepresentation {
@@ -130,9 +130,9 @@ export class KeycloakAuthAdapter implements AuthAdapter {
       });
   }
 
-  public async changePassword(uid: string, password: string): Promise<void> {
+  public async changeUserPassword(id: string, password: string): Promise<void> {
     return this.kcAdminClient.users.update(
-      { id: uid },
+      { id },
       {
         credentials: [
           {
@@ -145,10 +145,10 @@ export class KeycloakAuthAdapter implements AuthAdapter {
     );
   }
 
-  public async getUserByUid(userUid: string): Promise<AuthUser> {
+  public async getUserById(id: string): Promise<AuthUser> {
     return this.kcAdminClient.users
       .findOne({
-        id: userUid,
+        id: id,
       })
       .then(mapUserRepresentationToUserResponse);
   }
@@ -169,9 +169,9 @@ export class KeycloakAuthAdapter implements AuthAdapter {
       });
   }
 
-  public async modifyUserRoles(uid: string, roles: UserRoles[]): Promise<void> {
+  public async modifyUserRoles(id: string, roles: UserRoles[]): Promise<void> {
     return this.kcAdminClient.users.update(
-      { id: uid },
+      { id },
       {
         attributes: {
           roles: roles,
@@ -202,8 +202,8 @@ export class KeycloakAuthAdapter implements AuthAdapter {
     return { ...page, content: page.content.map(mapUserRepresentationToUserResponse) };
   }
 
-  public async setUserEnabled(uid: string, enabled: boolean): Promise<void> {
-    return this.kcAdminClient.users.update({ id: uid }, { enabled }).catch((e) => {
+  public async setUserEnabled(id: string, enabled: boolean): Promise<void> {
+    return this.kcAdminClient.users.update({ id }, { enabled }).catch((e) => {
       throw new UserNotFound(e.response.data.error);
     });
   }

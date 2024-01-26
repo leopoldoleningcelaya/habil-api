@@ -46,10 +46,10 @@ services:
       - DB_PASSWORD=root
       - KEYCLOAK_USER=admin
       - KEYCLOAK_PASSWORD=adminkc
-      - KEYCLOAK_IMPORT=/opt/jboss/keycloak/imports/sportship-realm.json
+      - KEYCLOAK_IMPORT=/opt/jboss/keycloak/imports/realm.json
     container_name: keycloak
     volumes:
-      - ./imports/sportship-realm.json:/opt/jboss/keycloak/imports/sportship-realm.json
+      - ./imports/realm.json:/opt/jboss/keycloak/imports/realm.json
     ports:
       - 8085:8080
     depends_on:

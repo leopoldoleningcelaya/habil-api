@@ -1,10 +1,10 @@
 import { NextFunction, Request, Response } from 'express';
-import { UpdateUserDto, UserDto, UserEnabledDto } from '@dtos/user.dto';
+import { ChangeUserPasswordDto, UserDto, UserEnabledDto } from '@dtos/user.dto';
 import { AuthRecord } from '@interfaces/auth.interface';
 import { mapQueryToGetAllUsersParams } from '@mappers/user.mappers';
 import UserService from '@services/user.service';
 
-class UsersController {
+class UserController {
   public userService: UserService = UserService.getInstance();
 
   public getAllUsers = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
@@ -48,9 +48,9 @@ class UsersController {
     next: NextFunction
   ): Promise<void> => {
     try {
-      const { uid } = req.params;
+      const { id } = req.params;
       const userEnabledDto: UserEnabledDto = req.body;
-      await this.userService.setUserEnabled(uid, userEnabledDto);
+      await this.userService.setUserEnabled(id, userEnabledDto);
       const response = { message: 'User enabled modified' };
       res.status(200).send(response);
     } catch (error) {
@@ -59,12 +59,16 @@ class UsersController {
     }
   };
 
-  public updateUser = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+  public changeUserPassword = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<void> => {
     try {
       const { id }: AuthRecord = res.locals.auth;
-      const updateUserDto: UpdateUserDto = req.body;
-      await this.userService.updateUser(id, updateUserDto);
-      const response = { message: 'User updated' };
+      const pwDto: ChangeUserPasswordDto = req.body;
+      await this.userService.changeUserPassword(id, pwDto);
+      const response = { message: 'User password changed' };
       res.status(200).send(response);
     } catch (error) {
       console.error(error);
@@ -73,4 +77,4 @@ class UsersController {
   };
 }
 
-export default UsersController;
+export default UserController;

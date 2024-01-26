@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import { HttpError } from '@errors';
-import { UserResponse } from '@responses/user.response';
+import { UserResponse } from '@responses/auth.response';
 
 function roleMiddleware(authorizedRoles: string[]) {
   return async (req: Request, res: Response, next: NextFunction) => {
