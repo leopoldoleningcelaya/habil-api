@@ -1,24 +1,24 @@
 import 'reflect-metadata';
 import { SportActivity } from '@entity/SportActivity';
-import { SportMembership } from '@entity/SportMembership';
-import { UserClockIn } from '@entity/UserClockIn';
 import { DataSource } from 'typeorm';
-import { UserClockInSubscriber } from '@/subscriber/UserClockInSubscriber';
-import { DB_HOST, DB_PORT, DB_NAME, DB_USER, DB_PASSWORD } from '@config';
-import { SportCenter } from '@entity/ServiceCategory';
+import { DB_TYPE, DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME } from '@config';
+import { City } from '@entity/City';
+import { Country } from '@entity/Country';
+import { Offerer } from '@entity/Offerer';
+import { ServiceCategory } from '@entity/ServiceCategory';
+import { UserReview } from '@entity/UserReview';
 
 const AppDataSource = new DataSource({
-  type: 'postgres',
+  type: DB_TYPE as any,
   host: DB_HOST,
   port: DB_PORT,
   username: DB_USER,
   password: DB_PASSWORD,
   database: DB_NAME,
-  //TODO: see how to log using the global logger
-  //   synchronize: NODE_ENV === 'dev' ? false : false,
-  //   logging: NODE_ENV === 'dev' ? false : false,
-  entities: [SportCenter, SportActivity, SportMembership, UserClockIn],
-  migrations: [__dirname + '/migration/*.ts'],
-  subscribers: [UserClockInSubscriber],
+  synchronize: true,
+  logging: true,
+  entities: [City, Country, Offerer, ServiceCategory, UserReview],
+  subscribers: [],
+  migrations: [],
 });
 export default AppDataSource;

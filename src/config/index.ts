@@ -17,8 +17,9 @@ export const {
   LOG_FORMAT,
   LOG_DIR,
   ORIGIN,
+  DB_TYPE,
   DB_HOST,
-  DB_NAME,
   DB_USER,
   DB_PASSWORD,
+  DB_NAME,
 } = process.env;
