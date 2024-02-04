@@ -2,8 +2,8 @@ import { ChangeUserPasswordDto, UserDto, UserEnabledDto } from '@dtos/user.dto';
 import { getAuthAdapter } from '@factories/authAdapter.factory';
 import { Page } from '@interfaces';
 import { AuthAdapter } from '@interfaces/auth.interface';
+import { User } from '@interfaces/user.interface';
 import { GetAllUsersParams } from '@params/user.param';
-import { UserResponse } from '@responses/user.response';
 
 class UserService {
   private static instance: UserService;
@@ -11,11 +11,11 @@ class UserService {
 
   private constructor() {}
 
-  public async getAllUsers(filters: GetAllUsersParams): Promise<Page<UserResponse>> {
+  public async getAllUsers(filters: GetAllUsersParams): Promise<Page<User>> {
     return this.authService.getUsers(filters);
   }
 
-  public async getUserByUsername(username: string): Promise<UserResponse> {
+  public async getUserByUsername(username: string): Promise<User> {
     return this.authService.getUserByUsername(username);
   }
 

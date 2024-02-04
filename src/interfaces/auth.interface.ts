@@ -1,10 +1,9 @@
 import { UserRoles } from '@enums';
 import { GetAllUsersParams } from '@params/user.param';
-import { LoginGrant } from '@responses/auth.response';
-import { UserResponse } from '@responses/user.response';
 import { Page } from '.';
+import { User } from './user.interface';
 
-export type AuthRecord = UserResponse;
+export type AuthRecord = User;
 
 export interface AuthUser {
   id: string;
@@ -27,4 +26,11 @@ export interface AuthAdapter {
   setUserEnabled(id: string, enabled: boolean): Promise<void>;
   verifyToken(token: string): Promise<AuthUser>;
   changeUserPassword(id: string, password: string): Promise<void>;
+}
+
+export class LoginGrant {
+  access_token: string;
+  expires_in: number;
+  refresh_expires_in: number;
+  refresh_token: string;
 }

@@ -1,18 +1,13 @@
-# Sportship
-Aplicación de membresías deportivas. La idea es que la aplicación permita que establecimientos como gimnasios y centros de deporte puedan cobrar en la web sus membresías a sus clientes.
+# Habil: tu profesional
+Aplicación para que profesionales como albañiles, plomeros, gasistas, parqueros, etc. puedan publicar sus servicios y los clientes puedan contactarlos y hacer reseñas de su trabajo.
 
 ## Requerimientos funcionales
  - El sistema debe permitir al usuarios registrarse o iniciar sesión en la plataforma con google o facebook.
- - El sistema debe soportar agregar sucursales de los establecimientos.
- - El sistema debe permitir al establecimiento deportivo definir actividades y los precios de las membresías. Cada actividad debe poseer:
-    - Un nombre 
-    - Una descripción 
-    - Frecuencia semanal
-    - Precio mensual
- - El sistema debe mostrar al usuario las actividades disponibles.
- - El sistema debe permitir que el usuario selecione una actividad de su preferencia y efectúe el pago mediante Mercadopago (a chequear que no se me vaya de las manos el proyectito).
- - El sistema debe permitir fichar el acceso al establecimiento. Almacenar timestamp, usuario y sucursal.
- - El sistema debe verificar que un cliente no fiche más allá de la frecuencia semanal de la actividad que contrató
+ - El sistema debe permitir a los oferentes crear un perfil profesional y añadir servicios que ofrecen.
+ - El sistema debe permitir al oferente cargar fotos de su trabajo.
+ - El sistema debe mostrar al usuario los profesionales disponibles en su localidad.
+ - El sistema debe permitir al usuario realizar una reseña acerca de los servicios de los oferentes.
+
 
 ## Requerimientos no funcionales
  - La interfaz debe ser responsive

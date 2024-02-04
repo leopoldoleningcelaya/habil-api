@@ -8,9 +8,9 @@ export interface Page<T> {
 }
 
 export interface CRUDRepository<T extends BaseEntity> {
-  find(filters?: Partial<T>): Promise<T[]>;
+  find(filters?: Partial<T>, pageNumber?: number, pageSize?: number): Promise<Page<T>>;
   findOneBy(filters?: Partial<T>): Promise<T>;
-  save(data: T): Promise<void>;
-  update(id: string, data: Partial<T>): Promise<void>;
-  delete(id: string): Promise<void>;
+  create(data: T): Promise<number>;
+  update(id: number, data: Partial<T>): Promise<void>;
+  delete(id: number): Promise<void>;
 }

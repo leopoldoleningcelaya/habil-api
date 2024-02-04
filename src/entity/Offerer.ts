@@ -1,6 +1,7 @@
-import { Entity, Column, ManyToOne, ManyToMany, JoinTable } from 'typeorm';
+import { Entity, Column, ManyToOne, ManyToMany, JoinTable, OneToMany } from 'typeorm';
 import BaseEntity from '.';
 import { City } from './City';
+import { GalleryPhoto } from './GalleryPhoto';
 import { ServiceCategory } from './ServiceCategory';
 import { UserReview } from './UserReview';
 
@@ -8,6 +9,9 @@ import { UserReview } from './UserReview';
 export class Offerer extends BaseEntity {
   @Column()
   username: string;
+
+  @Column()
+  profilePictureUrl: string;
 
   @ManyToOne(() => City, (city) => city.offerers)
   city: City;
@@ -39,4 +43,7 @@ export class Offerer extends BaseEntity {
   @ManyToMany(() => ServiceCategory)
   @JoinTable()
   serviceCategories: ServiceCategory[];
+
+  @OneToMany(() => GalleryPhoto, (photo) => photo.offerer)
+  galleryPhotos: GalleryPhoto[];
 }

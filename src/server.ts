@@ -9,9 +9,9 @@ validateEnv();
 
 const app = new App(
   config,
-  [],
-  '/api/v1',
   [new AuthRoute(), new UsersRoute(), new HealthRoute()],
+  '/api/v1',
+  [],
   '/internal/v1',
   [pagination]
 );
