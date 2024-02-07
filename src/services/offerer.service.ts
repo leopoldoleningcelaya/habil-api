@@ -1,5 +1,4 @@
 import { OffererDto } from '@dtos/offerer.dto';
-import { PhotoDto } from '@dtos/photo.dto';
 import { Offerer } from '@entity/Offerer';
 import { Page } from '@interfaces';
 import { OffererRepository } from '@interfaces/offerer.interface';
@@ -24,6 +23,8 @@ class OffererService {
 
   public async addOfferer(offererDto: OffererDto): Promise<number> {
     throw new Error('Method not implemented.');
+    // const offerer = new Offerer();
+    // offerer.id_user = offererDto.id_user;
   }
 
   public async updateOfferer(id: number, offererDto: Partial<OffererDto>): Promise<void> {

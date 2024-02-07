@@ -12,9 +12,8 @@ import {
   UserNotFound,
 } from '@errors/auth.error';
 import { Page } from '@interfaces';
-import { AuthAdapter, AuthUser } from '@interfaces/auth.interface';
+import { AuthAdapter, AuthUser, LoginGrant } from '@interfaces/auth.interface';
 import { GetAllUsersParams } from '@params/user.param';
-import { LoginGrant } from '@responses/auth.response';
 import { paginateArray } from '@utils/paginateArray';
 
 interface UserRepresentation {

@@ -210,7 +210,8 @@
           "webhook",
           "webhooks",
           "winston",
-          "yaml"
+          "yaml",
+          "unlink"
         ],
         "skipIfMatch": [
           "http[s]://[^s]*",

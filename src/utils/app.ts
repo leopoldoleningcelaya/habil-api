@@ -60,6 +60,10 @@ export default class App {
     this.initializeMiddlewares(additionalMiddlewares);
     this.initializeRoutes(routes, basepath || '/');
     this.initializeRoutes(privateRoutes || [], privateBasepath || '/');
+
+    // eslint-disable-next-line import/no-named-as-default-member
+    this.app.use('/images', express.static(path.join(process.cwd(), '../data/images'))); // serve static images
+
     this.initializeSwagger(basepath || '/');
     this.initializeErrorHandling();
   }

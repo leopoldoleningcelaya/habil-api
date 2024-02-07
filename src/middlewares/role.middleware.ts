@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import { HttpError } from '@errors';
-import { UserResponse } from '@responses/auth.response';
+import { User } from '@interfaces/user.interface';
 
 function roleMiddleware(authorizedRoles: string[]) {
   return async (req: Request, res: Response, next: NextFunction) => {
@@ -11,7 +11,7 @@ function roleMiddleware(authorizedRoles: string[]) {
         );
         throw new Error('User not authenticated');
       }
-      const { roles }: UserResponse = res.locals.auth;
+      const { roles }: User = res.locals.auth;
       if (!roles.some((role) => authorizedRoles.includes(role)))
         // TODO: extract error
         throw new HttpError(403, 'User not authorized', 'UNAUTHORIZED');

@@ -1,8 +1,7 @@
 import { CredentialsDto, RefreshTokenDto } from '@dtos/auth.dto';
 import { getAuthAdapter } from '@factories/authAdapter.factory';
-import { AuthAdapter } from '@interfaces/auth.interface';
-import { LoginGrant } from '@responses/auth.response';
-import { UserResponse } from '@responses/user.response';
+import { AuthAdapter, LoginGrant } from '@interfaces/auth.interface';
+import { User } from '@interfaces/user.interface';
 
 class AuthService {
   private static instance: AuthService;
@@ -18,7 +17,7 @@ class AuthService {
     return this.authService.refreshToken(refresh_token);
   }
 
-  public async verifyToken(token: string): Promise<UserResponse> {
+  public async verifyToken(token: string): Promise<User> {
     return this.authService.verifyToken(token);
   }
 
